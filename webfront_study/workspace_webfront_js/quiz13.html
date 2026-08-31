@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #result {
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <input id="text" type="text" placeholder="input your phone number">
+    <button id="btn">검사</button>
+    <div id="result">검사 결과</div>
+    <script>
+
+        document.getElementById("btn").onclick = function () {
+            let regex = /^010-?\d{4}-?\d{4}$/g;
+            //정규식은 ===가 아니라 .text()로 검사
+            if (document.getElementById("text").value === "") {
+                alert("번호를 입력해주세요.");
+                return;
+            }
+            if (regex.test(document.getElementById("text").value)) {
+                document.getElementById("result").innerHTML = "전화번호 맞음";
+            } else {
+                document.getElementById("result").innerHTML = "전화번호 아님";
+            }
+        }
+    </script>
+</body>
+
+</html>

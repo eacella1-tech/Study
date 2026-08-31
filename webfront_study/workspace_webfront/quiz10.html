@@ -1,0 +1,1291 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <title>Ticketing</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+
+        /* ===BODY=== */
+
+        body {
+            background-color: #0b0d10;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+
+
+        /* ===CONTAINER=== */
+
+        .container {
+            width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* ===HEADER=== */
+
+        .header {
+            height: 80px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #2a2f38;
+        }
+
+
+        /* LOGO */
+
+        .logo {
+            width: 180px;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 25px;
+            font-weight: bold;
+            color: deeppink;
+        }
+
+        /* TOP MENU */
+
+        .menu {
+            flex: 1;
+        }
+
+        .menu ul {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .menu li {
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .menu li:hover {
+            color: deeppink;
+        }
+
+
+        /* LOGIN */
+
+        .login {
+            width: 180px;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .login>i {
+            margin-right: 5px;
+        }
+
+        .login:hover {
+            color: deeppink;
+        }
+
+        .allmenu {
+            width: 100px;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            font-weight: bold;
+            cursor: pointer;
+
+            transition: 0.3s;
+        }
+
+        .allmenu>i {
+            margin-right: 5px;
+        }
+
+        .allmenu:hover {
+            color: deeppink;
+        }
+
+        /* ===NAVIGATION=== */
+
+        .navi {
+            height: 60px;
+            border-bottom: 1px solid #2a2f38;
+        }
+
+        .navi li>i {
+            margin-right: 8px;
+        }
+
+        .navi ul {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            list-style: none;
+        }
+
+        .navi li {
+            flex: 1;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .navi li:hover {
+            background-color: #171b21;
+            color: deeppink;
+        }
+
+
+        /* ===MAIN=== */
+
+        .main {
+            margin-top: 30px;
+        }
+
+
+        /* ===HERO=== */
+
+        .hero {
+            height: 400px;
+            display: flex;
+            align-items: center;
+            padding: 50px;
+            background-color: #11151b;
+            border: 1px solid #2a2f38;
+            border-radius: 16px;
+            overflow: hidden;
+            transition: 0.3s;
+        }
+
+        .hero {
+            position: relative;
+            background-image:
+                linear-gradient(90deg,
+                    rgba(17, 21, 27, 0.98),
+                    rgba(17, 21, 27, 0.65)),
+                url("stadium.jpg");
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero:hover {
+            cursor: pointer;
+            transform: translateY(-5px);
+            border-color: deeppink;
+            background-color: #151a21;
+        }
+
+
+        /* HERO TEXT */
+
+        .hero-text {
+            width: 50%;
+            color: aqua;
+        }
+
+        .hero-text h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .hero-text p {
+            font-size: 18px;
+            color: #999;
+            margin-bottom: 5px;
+        }
+
+        /* HERO IMAGE */
+
+        .hero-image {
+            width: 50%;
+            height: 100%;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 12px;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 30%;
+            border-radius: 12px;
+        }
+
+        /* ===CONTENT===*/
+
+        .content {
+            margin-top: 60px;
+            cursor: pointer;
+        }
+
+        .content-title {
+            color: white;
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        /* ===POPULAR MATCH=== */
+
+        .match-list {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+            padding-bottom: 10px;
+            scrollbar-width: none;
+        }
+
+        /* ===POPULAR MATCH SLIDER=== */
+
+        .match-slider {
+            position: relative;
+            display: flex;
+            align-items: center;
+            width: 100%;
+        }
+
+        /* MATCH LIST */
+
+        .match-list {
+            display: flex;
+            gap: 20px;
+            width: 100%;
+            overflow-x: auto;
+            overflow-y: hidden;
+            padding: 10px 0;
+            scroll-behavior: smooth;
+            scrollbar-width: none;
+        }
+
+        .match-list::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* MATCH CARD */
+
+        .match-card {
+            width: 280px;
+            height: 180px;
+            flex: 0 0 280px;
+            overflow: hidden;
+            background-color: #11151b;
+            border: 1px solid #2a2f38;
+            border-radius: 12px;
+            transition: 0.3s;
+        }
+
+        .match-card:hover {
+            transform: translateY(-5px);
+            border-color: deeppink;
+        }
+
+        .match-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+
+        /* ===SLIDER BUTTON===*/
+
+        .slider-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 10;
+            width: 45px;
+            height: 45px;
+            border: none;
+            border-radius: 50%;
+            background-color: rgba(0, 0, 0, 0.75);
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .slider-btn:hover {
+            background-color: deeppink;
+        }
+
+
+        /* LEFT */
+
+        .slider-btn.prev {
+            left: 10px;
+        }
+
+
+        /* RIGHT */
+
+        .slider-btn.next {
+            right: 10px;
+        }
+
+        .match-list::-webkit-scrollbar {
+            display: none;
+        }
+
+
+        /* MATCH CARD */
+
+        .match-card {
+            position: relative;
+            width: 280px;
+            height: 180px;
+            flex: 0 0 280px;
+            overflow: hidden;
+            background-color: #11151b;
+            border: 1px solid #2a2f38;
+            border-radius: 12px;
+            transition: 0.3s;
+        }
+
+        .match-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.4s;
+        }
+
+        /* 마우스를 올렸을 때 나타나는 영역 */
+
+        .match-overlay {
+            position: absolute;
+            inset: 0;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            background-color: rgba(0, 0, 0, 0.65);
+
+            opacity: 0;
+            transition: 0.4s;
+
+            text-align: center;
+        }
+
+        /* 마우스 올리면 사진 흐려짐 */
+
+        .match-card:hover img {
+            transform: scale(1.08);
+            filter: blur(3px);
+        }
+
+        /* 마우스 올리면 정보 등장 */
+
+        .match-card:hover .match-overlay {
+            opacity: 1;
+        }
+
+
+        .match-overlay h3 {
+            font-size: 18px;
+            margin: 2px 0;
+        }
+
+
+        .match-overlay span {
+            color: #aaa;
+            font-size: 12px;
+            margin: 3px 0;
+        }
+
+
+        .match-overlay p {
+            color: #aaa;
+            font-size: 12px;
+            margin-top: 7px;
+        }
+
+
+        /* 티켓 버튼 */
+
+        .match-overlay button {
+            margin-top: 12px;
+            padding: 7px 18px;
+
+            border: none;
+            border-radius: 20px;
+
+            background-color: deeppink;
+            color: white;
+
+            font-weight: bold;
+            cursor: pointer;
+
+            transition: 0.3s;
+        }
+
+        .match-overlay button:hover {
+            background-color: #ff4db8;
+        }
+
+        .match-card:hover {
+            transform: translateY(-5px);
+            border-color: deeppink;
+        }
+
+        .match-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+
+        /* ===TICKET OPEN=== */
+        .ticket-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+
+        .ticket-subtitle {
+            margin-top: -10px;
+            color: #666;
+            font-size: 14px;
+        }
+
+
+        .ticket-status {
+            padding: 7px 14px;
+            border: 1px solid #333;
+            border-radius: 20px;
+            color: #ff4db8;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .ticket-status:hover {
+            cursor: pointer;
+            background-color: white;
+            transition-duration: 1s;
+        }
+
+        /* TICKET LIST */
+
+        .ticket-list {
+            display: flex;
+            flex-wrap: nowrap;
+            gap: 20px;
+            width: 100%;
+            overflow-x: auto;
+            overflow-y: hidden;
+            padding-bottom: 15px;
+            scroll-behavior: smooth;
+            cursor: pointer;
+            scrollbar-width: auto;
+        }
+
+        .ticket-list::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .ticket-list::-webkit-scrollbar-track {
+            background: #1a1d23;
+        }
+
+        .ticket-list::-webkit-scrollbar-thumb {
+            background: #555;
+            border-radius: 10px;
+        }
+
+
+        /* TICKET CARD */
+
+        .ticket-card {
+            width: 280px;
+            min-width: 280px;
+            height: 220px;
+            flex-shrink: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            background-color: #11151b;
+            border: 1px solid #2a2f38;
+            border-radius: 12px;
+            transition: 0.3s;
+        }
+
+
+        .ticket-card:hover {
+            transform: translateY(-5px);
+            border-color: deeppink;
+            background-color: #151a21;
+        }
+
+
+        /* TEAM */
+
+        .ticket-team {
+            font-size: 18px;
+            font-weight: bold;
+            line-height: 1.3;
+        }
+
+        .ticket-team span {
+            display: block;
+            margin: 5px 0;
+            color: #777;
+            font-size: 13px;
+        }
+
+
+        /* MATCH DATE */
+
+        .match-date {
+            color: #aaa;
+            font-size: 14px;
+        }
+
+
+        /* TICKET OPEN TIME */
+
+        .open-time {
+            color: #aaa;
+            font-size: 13px;
+        }
+
+        .open-time strong {
+            display: block;
+            color: deeppink;
+            font-size: 15px;
+            margin-top: 5px;
+        }
+
+
+        /* BUTTON */
+
+        .ticket-card button {
+            width: 100%;
+            height: 35px;
+            border: none;
+            border-radius: 6px;
+            background-color: deeppink;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .ticket-card button:hover {
+            background-color: #ff4db8;
+        }
+
+        /* footer */
+
+        .footer {
+            min-height: 220px;
+            margin-top: 100px;
+            padding: 50px 0;
+            border-top: 1px solid #2a2f38;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            color: #777;
+        }
+
+        .footer-left {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .footer-logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: deeppink;
+        }
+
+        .footer-left p {
+            font-size: 13px;
+        }
+
+
+        .footer-menu {
+            display: flex;
+            gap: 50px;
+            margin-left: 100px;
+        }
+
+
+        .footer-menu h3 {
+            margin-bottom: 15px;
+            color: white;
+            font-size: 15px;
+        }
+
+        .footer-menu p {
+            margin-bottom: 10px;
+            font-size: 13px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .footer-menu p:hover {
+            color: deeppink;
+        }
+
+        .full-menu {
+            width: 100%;
+            background-color: #11151b;
+            border-bottom: 1px solid #2a2f38;
+            padding: 35px 40px;
+            display: none;
+        }
+
+        /* 메뉴 열림 */
+
+        .full-menu.active {
+            display: block;
+        }
+
+
+        /* 메뉴 전체 */
+
+        .full-menu-inner {
+            display: flex;
+            justify-content: center;
+            gap: 80px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+
+        /* 메뉴 하나 */
+
+        .full-menu-section {
+            width: 180px;
+        }
+
+
+        /* 메뉴 제목 */
+
+        .full-menu-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+            padding-bottom: 15px;
+            margin-bottom: 10px;
+            border-bottom: 2px solid deeppink;
+        }
+
+
+        /* 메뉴 항목 */
+
+        .full-menu-section ul {
+            list-style: none;
+        }
+
+        .full-menu-section li {
+            padding: 9px 0;
+            color: #999;
+            font-size: 14px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .full-menu-section li:hover {
+            color: deeppink;
+            padding-left: 5px;
+        }
+    </style>
+
+</head>
+
+
+<body>
+
+    <div class="container">
+
+        <!-- ===HEADER===-->
+
+        <div class="header">
+            <div class="logo">
+                GOLA
+            </div>
+            <div class="menu">
+                <ul>
+                    <li>
+                        <i class="fa-solid fa-futbol"></i>
+                        축구
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-baseball"></i>
+                        야구
+                    </li>
+                    <li><i class="fa-solid fa-headphones"></i>
+                        음악</li>
+                </ul>
+            </div>
+
+            <div class="login">
+                <i class="fa-solid fa-user"></i>
+                로그인
+            </div>
+            <div class="allmenu" id="allMenu">
+                <i class="fa-solid fa-bars fa-xl"></i>
+                <span>전체 메뉴</span>
+            </div>
+        </div>
+        <div class="full-menu" id="fullMenu">
+
+            <div class="full-menu-inner">
+
+                <!-- 홈 -->
+
+                <div class="full-menu-section">
+
+                    <div class="full-menu-title">
+                        홈
+                    </div>
+
+                    <ul>
+                        <li>게시판</li>
+                        <li>오늘의 경기</li>
+                        <li>인기 경기</li>
+                        <li>공지사항</li>
+                    </ul>
+
+                </div>
+
+                <!-- 매치 -->
+
+                <div class="full-menu-section">
+
+                    <div class="full-menu-title">
+                        매치
+                    </div>
+
+                    <ul>
+                        <li>전체 경기</li>
+                        <li>축구</li>
+                        <li>야구</li>
+                        <li>경기 일정</li>
+                        <li>콘서트 일정</li>
+                    </ul>
+
+                </div>
+
+
+                <!-- 티켓 -->
+
+                <div class="full-menu-section">
+
+                    <div class="full-menu-title">
+                        티켓
+                    </div>
+
+                    <ul>
+                        <li>티켓 예매</li>
+                        <li>오픈 예정</li>
+                        <li>예매 내역</li>
+                        <li>취소 / 환불</li>
+                    </ul>
+
+                </div>
+
+
+                <!-- 랭킹 -->
+
+                <div class="full-menu-section">
+                    <div class="full-menu-title">
+                        랭킹
+                    </div>
+
+                    <ul>
+                        <li>팀 랭킹</li>
+                        <li>선수 랭킹</li>
+                        <li>득점 순위</li>
+                        <li>인기 팀</li>
+                    </ul>
+
+                </div>
+
+                <!-- 리그 -->
+
+                <div class="full-menu-section">
+                    <div class="full-menu-title">
+                        리그
+                    </div>
+
+                    <ul>
+                        <li>프리미어리그</li>
+                        <li>라리가</li>
+                        <li>세리에 A</li>
+                        <li>챔피언스리그</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- ===NAVIGATION ===-->
+
+        <div class="navi">
+            <ul>
+                <li>
+                    <i class="fa-solid fa-house"></i>
+                    홈
+                </li>
+                <li>
+                    <i class="fa-solid fa-hand-fist"></i>
+                    매치
+                </li>
+                <li>
+                    <i class="fa-solid fa-ticket-simple"></i>
+                    티켓
+                </li>
+                <li>
+                    <i class="fa-solid fa-ranking-star"></i>
+                    랭킹
+                </li>
+                <li>
+                    <i class="fa-solid fa-calendar"></i>
+                    리그
+                </li>
+            </ul>
+        </div>
+
+        <!-- ===MAIN=== -->
+        <div class="main">
+
+            <!-- ===HERO=== -->
+            <div class="hero">
+                <div class="hero-text">
+                    <h1>
+                        오늘의 경기
+                    </h1>
+                    <p>
+                        Atlético de Madrid
+                    </p>
+                    <p>
+                        VS
+                    </p>
+                    <p>
+                        Paris Saint-Germain
+                    </p>
+                </div>
+                <div class="hero-image">
+                    <img src="images/hero.jpeg" alt="soccer">
+                </div>
+            </div>
+
+            <!-- ===POPULAR MATCH=== -->
+            <div class="content">
+                <div class="content-title">
+                    지금 주목해야 할 경기
+                </div>
+                <div class="match-slider">
+
+                    <button class="slider-btn prev">
+                        &#10094;
+                    </button>
+
+                    <div class="match-list">
+                        <div class="match-card">
+                            <img src="images/real.jpg" alt="Real Madrid">
+
+                            <div class="match-overlay">
+                                <h3>Real Madrid</h3>
+                                <span>VS</span>
+                                <h3>Barcelona</h3>
+
+                                <p>AUG 30 · 19:30</p>
+                                <p>🏟 Santiago Bernabéu</p>
+
+                                <button>티켓 보기</button>
+                            </div>
+                        </div>
+                        <div class="match-card">
+                            <img src="images/liverpool.jpg" alt="Liverpool">
+
+                            <div class="match-overlay">
+                                <h3>Liverpool</h3>
+                                <span>VS</span>
+                                <h3>Arsenal</h3>
+
+                                <p>SEP 27 · 00:00</p>
+                                <p>🏟 Anfield</p>
+
+                                <button>티켓 보기</button>
+                            </div>
+                        </div>
+                        <div class="match-card">
+                            <img src="images/bvb.webp" alt="Dortmund">
+
+                            <div class="match-overlay">
+                                <h3>BVB 09 Dortmund</h3>
+                                <span>VS</span>
+                                <h3>Manchester United</h3>
+
+                                <p>JUN 15 · 23:30</p>
+                                <p>🏟 Signal Iduna Park</p>
+
+                                <button>티켓 보기</button>
+                            </div>
+                        </div>
+                        <div class="match-card">
+                            <img src="images/lafc.jpg" alt="LAFC">
+
+                            <div class="match-overlay">
+                                <h3>LA FC</h3>
+                                <span>VS</span>
+                                <h3>Inter Miami</h3>
+
+                                <p>MAY 8 · 21:30</p>
+                                <p>🏟 loanDepot Park</p>
+
+                                <button>티켓 보기</button>
+                            </div>
+                        </div>
+                        <div class="match-card">
+                            <img src="images/mh.jpg" alt="Munich">
+
+                            <div class="match-overlay">
+                                <h3>Bayern Munich</h3>
+                                <span>VS</span>
+                                <h3>Dortmund</h3>
+
+                                <p>JUN 25 · 21:30</p>
+                                <p>🏟 Allianz Arena</p>
+
+                                <button>티켓 보기</button>
+                            </div>
+                        </div>
+                        <div class="match-card">
+                            <img src="imgaes/jb.webp" alt="Juventus">
+
+                            <div class="match-overlay">
+                                <h3>Junventus</h3>
+                                <span>VS</span>
+                                <h3>AC Milan</h3>
+
+                                <p>JUL 02 · 20:00</p>
+                                <p>🏟 Stadio San Siro</p>
+
+                                <button>티켓 보기</button>
+                            </div>
+                        </div>
+                        <div class="match-card">
+                            <img src="images/che.jpg" alt="Chelsea">
+
+                            <div class="match-overlay">
+                                <h3>Chelsea</h3>
+                                <span>VS</span>
+                                <h3>Manchester City</h3>
+
+                                <p>JUL 10 · 19:30</p>
+                                <p>🏟 Etihad Stadium</p>
+
+                                <button>티켓 보기</button>
+                            </div>
+                        </div>
+                    <button class="slider-btn next">
+                        &#10095;
+                    </button>
+                </div>
+            </div>
+
+            <!-- ===TICKET OPEN=== -->
+
+            <div class="ticket-header">
+
+                <div>
+                    <div class="content-title">
+                        오픈 예정 🎫
+                    </div>
+
+                    <p class="ticket-subtitle">
+                        곧 오픈 예정입니다. 골라골라!
+                    </p>
+                </div>
+
+                <div class="ticket-status">
+                    ● LIVE
+                </div>
+
+            </div>
+            <div class="ticket-list">
+
+                <!-- CARD 01 -->
+                <div class="ticket-card">
+                    <div class="ticket-team">
+                        Real Madrid
+                        <span>VS</span>
+                        Barcelona
+                    </div>
+                    <div class="match-date">
+                        AUG 30 · 19:30
+                    </div>
+                    <div class="open-time">
+                        Ticket Open
+                        <strong>
+                            AUG 25 · 14:00
+                        </strong>
+                    </div>
+
+                    <button>
+                        View Tickets
+                    </button>
+
+                </div>
+
+                <!-- CARD 02 -->
+                <div class="ticket-card">
+                    <div class="ticket-team">
+                        Liverpool
+                        <span>VS</span>
+                        Arsenal
+                    </div>
+                    <div class="match-date">
+                        SEP 27 · 00:00
+                    </div>
+                    <div class="open-time">
+                        Ticket Open
+                        <strong>
+                            SEP 22 · 14:00
+                        </strong>
+                    </div>
+                    <button>
+                        View Tickets
+                    </button>
+                </div>
+
+                <!-- CARD 03 -->
+                <div class="ticket-card">
+                    <div class="ticket-team">
+                        BVB 09 Dortmund
+                        <span>VS</span>
+                        Manchester United
+                    </div>
+                    <div class="match-date">
+                        JUN 15 · 23:30
+                    </div>
+                    <div class="open-time">
+                        Ticket Open
+                        <strong>
+                            JUN 10 · 16:00
+                        </strong>
+                    </div>
+                    <button>
+                        View Tickets
+                    </button>
+                </div>
+
+                <!-- CARD 04 -->
+                <div class="ticket-card">
+                    <div class="ticket-team">
+                        LA FC
+                        <span>VS</span>
+                        Inter Miami
+                    </div>
+                    <div class="match-date">
+                        MAY 8 · 21:30
+                    </div>
+                    <div class="open-time">
+                        Ticket Open
+                        <strong>
+                            MAY 3 · 10:00
+                        </strong>
+                    </div>
+                    <button>
+                        View Tickets
+                    </button>
+                </div>
+
+                <!-- CARD 05 -->
+                <div class="ticket-card">
+                    <div class="ticket-team">
+                        AC Milan
+                        <span>VS</span>
+                        Inter Milan
+                    </div>
+                    <div class="match-date">
+                        JUN 20 · 20:00
+                    </div>
+                    <div class="open-time">
+                        Ticket Open
+                        <strong>
+                            JUN 15 · 14:00
+                        </strong>
+                    </div>
+                    <button>
+                        View Tickets
+                    </button>
+                </div>
+
+                <!-- CARD 06 -->
+                <div class="ticket-card">
+                    <div class="ticket-team">
+                        Bayern Munich
+                        <span>VS</span>
+                        Dortmund
+                    </div>
+                    <div class="match-date">
+                        JUN 25 · 21:30
+                    </div>
+                    <div class="open-time">
+                        Ticket Open
+                        <strong>
+                            JUN 20 · 16:00
+                        </strong>
+                    </div>
+                    <button>
+                        View Tickets
+                    </button>
+                </div>
+
+                <!-- CARD 07 -->
+                <div class="ticket-card">
+                    <div class="ticket-team">
+                        Juventus
+                        <span>VS</span>
+                        AC Milan
+                    </div>
+                    <div class="match-date">
+                        JUL 02 · 20:00
+                    </div>
+                    <div class="open-time">
+                        Ticket Open
+                        <strong>
+                            JUN 27 · 14:00
+                        </strong>
+                    </div>
+                    <button>
+                        View Tickets
+                    </button>
+                </div>
+
+                <!-- CARD 08 -->
+                <div class="ticket-card">
+                    <div class="ticket-team">
+                        Chelsea
+                        <span>VS</span>
+                        Manchester City
+                    </div>
+                    <div class="match-date">
+                        JUL 10 · 19:30
+                    </div>
+                    <div class="open-time">
+                        Ticket Open
+                        <strong>
+                            JUL 05 · 14:00
+                        </strong>
+                    </div>
+                    <button>
+                        View Tickets
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===FOOTER=== -->
+
+    <div class="footer">
+
+        <div class="footer-left">
+            <div class="footer-logo">GOLA</div>
+            <p> Online Ticketing Platform</p>
+            <p>Copyright © 2026 GOLA Ticketing. All rights reserved.</p>
+        </div>
+
+        <div class="footer-menu">
+            <div>
+                <h3>공지사항</h3>
+                <p>티켓예매안내</p>
+                <p>환불규정</p>
+                <p>FAQ</p>
+            </div>
+
+            <div>
+                <h3>고객센터</h3>
+                <p>0000-0000</p>
+                <p>본사 위치</p>
+                <p>사용자 문의사항</p>
+            </div>
+
+            <div>
+                <h3>파트너 센터</h3>
+                <p>Instagram</p>
+                <p>YouTube</p>
+                <p>X</p>
+            </div>
+        </div>
+    </div>
+    </div>
+    <script>
+
+        const ticketList = document.querySelector('.ticket-list');
+        ticketList.addEventListener('wheel', function (event) {
+            event.preventDefault();
+            ticketList.scrollLeft += event.deltaY;
+        });
+
+        const matchList = document.querySelector('.match-list');
+        const prevButton = document.querySelector('.slider-btn.prev');
+        const nextButton = document.querySelector('.slider-btn.next');
+        nextButton.addEventListener('click', function () {
+            matchList.scrollLeft += 300;
+        });
+
+        prevButton.addEventListener('click', function () {
+            matchList.scrollLeft -= 300;
+        });
+
+        const heroImage = document.querySelector('.hero-image img');
+        const heroImages = [
+            "images/hero.jpeg",
+            "images/hero2.jpg",
+            "images/hero3.jpg",
+            "images/hero4.jpg"
+        ];
+
+        let heroIndex = 0;
+        setInterval(function () {
+            heroIndex++;
+            if (heroIndex >= heroImages.length) {
+                heroIndex = 0;
+            }
+            heroImage.src = heroImages[heroIndex];
+        }, 3000);
+
+        const allMenu = document.querySelector('#allMenu');
+        const fullMenu = document.querySelector('#fullMenu');
+
+        allMenu.addEventListener('click', function () {
+
+            fullMenu.classList.toggle('active');
+
+        });
+    </script>
+</body>
+
+</html>

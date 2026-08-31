@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        function func() {
+            return function(num1,num2) {
+                return num1 + num2
+            }
+        }
+        let result = func()(10,5);
+        console.log(result);
+
+        // function plus(num1, num2) {
+        //     return num1 + num2;
+        // }
+
+        //1회용 함수
+        // (function (num1, num2) {
+        //     return num1 + num2;
+        // })(10, 20)
+
+        // let plus = function (num1, num2) {
+        //     return num1 + num2;
+        // };
+
+        // let result = plus(50, 60);
+        // console.log(result);
+
+    </script>
+</body>
+
+</html>

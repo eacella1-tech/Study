@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="//t1.kakaocdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+</head>
+
+<body>
+    <input type="text" id="zipcode" readonly placeholder="우편번호"><button id="search">주소검색</button><br>
+    <input type="text" id="address1" readonly placeholder="주소"><br>
+    <input type="text" id="address2" placeholder="상세주소">
+
+
+    <script>
+        document.getElementById("search").onclick = function () {
+            new kakao.Postcode({
+                oncomplete: function (data) {
+                    let zipcode = document.getElementById("zipcode").value = data.zonecode;
+                    let address1 = document.getElementById("address1").value = data.jibunAddress;
+                }
+            }).open();
+        }
+    </script>
+</body>
+
+</html>

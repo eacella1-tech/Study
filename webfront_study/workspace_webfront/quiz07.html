@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css"
+        integrity="sha512-QeR2VH+lsBE5LSAe1Q5EnTBbe7XTBubt8dG93Y7gidSgdMCr8nVqKcfKAMyN96SV8KDbZVTDXChatu5G2KQGzg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        .container {
+            width: 800px;
+            height: 600px;
+            margin: auto;
+        }
+
+        .container>.header {
+            height: 20%;
+        }
+
+        .container>.header>div {
+            float: left;
+            height: 100%;
+        }
+
+        .container>.header>.logo {
+            width: 20%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container>.header>.logo>img {
+            width: 95%;
+            height: 90%;
+            border-radius: 40px;
+        }
+
+        .container>.header>.title {
+            width: 65%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container>.header>.title>img {
+            width: 95%;
+            height: 95%;
+            border-radius: 100px;
+        }
+
+        .container>.header>.reserved {
+            width: 15%;
+        }
+
+        .container>.navi {
+            height: 7%;
+        }
+
+        .container>.navi>ul {
+            padding: 0px;
+            margin: 0px;
+            overflow: hidden;
+            height: 100%;
+        }
+
+        .container>.navi>ul>li {
+            list-style-type: none;
+            float: left;
+            width: 25%;
+            height: 100%;
+            font-weight: bold;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition-duration: 0.5s;
+        }
+
+        .container>.navi>ul>li:hover {
+            cursor: pointer;
+            background-color: brown;
+            color: white;
+            border-radius: 5px;
+        }
+
+
+        .container>.body {
+            height: 58%;
+        }
+
+        .container>.body>div {
+            float: left;
+            height: 100%;
+        }
+
+        .container>.body>.articles {
+            width: 70%;
+            font-weight: bold;
+        }
+
+        .container>.body>.articles>.articlesup {
+            height: 60%;
+        }
+
+        .container>.body>.articles>.articlesup>.board1 {
+            width: 100%;
+            height: 85%;
+        }
+
+        .container>.body>.articles>.articlesup>.info1 {
+            height: 15%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+
+
+        .container>.body>.articles>.articlesdown {
+            height: 40%;
+        }
+
+        .container>.body>.articles>.articlesdown>.board2>.board2-1 {
+            height: 80%;
+        }
+
+        .container>.body>.articles>.articlesdown>.board2>.info2 {
+            height: 20%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container>.body>.articles>.articlesdown>.board3>.board3-1 {
+            height: 80%;
+        }
+
+        .container>.body>.articles>.articlesdown>.board3>.info3 {
+            height: 20%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container>.body>.articles>.articlesdown>.board4>.board4-1 {
+            height: 80%;
+        }
+
+        .container>.body>.articles>.articlesdown>.board4>.info4 {
+            height: 20%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container>.body>.articles>.articlesdown>div {
+            float: left;
+            width: 33.33%;
+            height: 100%;
+        }
+
+        .container>.body>.side {
+            width: 30%;
+        }
+
+        .container>.body>.side>.login {
+            width: 100%;
+            height: 35%;
+        }
+
+        .container>.body>.side>.login>.loginheader {
+            height: 20%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container>.body>.side>.login>.loginbody {
+            height: 58%;
+        }
+
+        .container>.body>.side>.login>.loginbody>div {
+            float: left;
+        }
+
+        .container>.body>.side>.login>.loginbody>.loginleft {
+            width: 70%;
+            height: 100%;
+        }
+
+        .container>.body>.side>.login>.loginbody>.loginleft>div {
+            width: 100%;
+            height: 50%;
+        }
+
+        .container>.body>.side>.login>.loginbody>.loginleft input {
+            width: 100%;
+            height: 100%;
+        }
+
+        .container>.body>.side>.login>.loginbody>.loginright {
+            width: 30%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container>.body>.side>.login>.loginbody>.loginright>button {
+            width: 100%;
+            height: 100%;
+            font-weight: bold;
+        }
+
+        .container>.body>.side>.login>.loginbody>.loginright>button:hover {
+            cursor: pointer;
+            background-color: brown;
+            color: white;
+            transition-duration: 0.5s;
+            border-radius: 5px;
+        }
+
+        .container>.body>.side>.login>.loginfooter {
+            height: 22%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 13px;
+        }
+
+        .container>.body>.side>.emailbox {
+            width: 100%;
+            height: 65%;
+        }
+
+        .container>.body>.side>.emailbox>.mailbox {
+            height: 10%;
+            text-align: center;
+        }
+
+        .container>.body>.side>.emailbox>.maillist {
+            height: 90%;
+            overflow-y: auto;
+        }
+
+        .container>.body>.side>.emailbox>.maillist>table,
+        tr,
+        td {
+            border: 1px solid black;
+            width: 100%;
+            text-align: center;
+        }
+
+
+        .container>.footer {
+            height: 15%;
+            display: flex;
+            justify-self: center;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="header">
+            <div class="logo">
+                <img src="logo.png">
+            </div>
+            <div class="title">
+                <img src="title.png" class="animate__animated animate__shakeX">
+            </div>
+            <div class="reserved"></div>
+        </div>
+        <div class="navi">
+            <ul>
+                <li>Home</li>
+                <li>About</li>
+                <li>Board</li>
+                <li>Contact</li>
+            </ul>
+        </div>
+        <div class="body">
+            <div class="articles">
+                <div class="articlesup">
+                    <div class="board1 animate__animated animate__fadeInDown">
+                        <img src="https://picsum.photos/552/172?random=1">
+                    </div>
+                    <div class="info1">설명1</div>
+                </div>
+                <div class="articlesdown">
+                    <div class="board2 animate__animated animate__fadeInUp">
+                        <div class="board2-1">
+                            <img src="https://picsum.photos/181/105?random=2">
+                        </div>
+                        <div class="info2">설명2</div>
+                    </div>
+                    <div class="board3 animate__animated animate__fadeInUp">
+                        <div class="board3-1">
+                            <img src="https://picsum.photos/181/105?random=3">
+                        </div>
+                        <div class="info3">설명3</div>
+                    </div>
+                    <div class="board4 animate__animated animate__fadeInUp">
+                        <div class="board4-1">
+                            <img src="https://picsum.photos/181/105?random=4">
+                        </div>
+                        <div class="info4">설명4</div>
+                    </div>
+                </div>
+            </div>
+            <div class="side">
+                <div class="login">
+                    <div class="loginheader"><b>Login</b></div>
+                    <div class="loginbody">
+                        <div class="loginleft">
+                            <div class="id">
+                                <input type="text" placeholder="input id">
+                            </div>
+                            <div class="password">
+                                <input type="password" placeholder="input pw">
+                            </div>
+                        </div>
+                        <div class="loginright"><button>login</button></div>
+                    </div>
+                    <div class="loginfooter">
+                        <a href="">회원가입</a>/<a href="">비밀번호찾기</a>
+                    </div>
+                </div>
+                <div class="emailbox">
+                    <div class="mailbox">
+                        <i class="fa-regular fa-envelope fa-xl" style="color: rgb(185, 95, 59);"></i>
+                        MailBox
+                    </div>
+                    <div class="maillist">
+                        <table>
+                            <tr>
+                                <td>1 번째 메일입니다.</td>
+                            </tr>
+                            <tr>
+                                <td>2 번째 메일입니다.</td>
+                            </tr>
+                            <tr>
+                                <td>3 번째 메일입니다.</td>
+                            </tr>
+                            <tr>
+                                <td>4 번째 메일입니다.</td>
+                            </tr>
+                            <tr>
+                                <td>5 번째 메일입니다.</td>
+                            </tr>
+                            <tr>
+                                <td>6 번째 메일입니다.</td>
+                            </tr>
+                            <tr>
+                                <td>7 번째 메일입니다.</td>
+                            </tr>
+                            <tr>
+                                <td>8 번째 메일입니다.</td>
+                            </tr>
+                            <tr>
+                                <td>9 번째 메일입니다.</td>
+                            </tr>
+                            <tr>
+                                <td>10 번째 메일입니다.</td>
+                            </tr>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            Copyright by 이웅. Since 2026/08/21.
+        </div>
+    </div>
+
+</body>
+
+</html>

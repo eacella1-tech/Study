@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <!-- JQuery ?
+        JavaScript 보다 더 편한 JavaScript를 목표로 등장한 자바스크립트 라이브러리
+        > 브라우저 전쟁 당시 브라우저 간 호환성을 지원하며 큰 인기를 가짐
+        > 또한 개발자가 작성해야하는 자바스크립트의 코드 분량을 압도적으로 축소시켜 인기를 더함
+        
+        > 향후 웹표준이 정립되고 React, Augular, Vue 등이 등장하면서 인기를 잃음
+        > 현재는 SM 업무 파트에서 Legacy 코드를 다룰 때, 또는 작은 스케일의 단순 웹을 만들 때 사용 됨.
+
+        *특징
+        > 99% 이상의 코드가 function으로만 이루어져 있음. ( 변수 사용이 매우 적음 )
+        > CSS 의 선택자를 활용한 Element 접근이 가능함.
+        > 배열에 대한 이벤트처리가 쉬움.
+        > 자바스크립트 문법과 100% 혼용 가능.
+    -->
+    <input type="text" id="message"><br>
+    <div id="box">Box</div>
+    <button class="btn">Pop!</button>
+    <script>
+        let input = $("#message"); // document.getElementById("message") 와 99% 동일
+        input.val("JQuery에서 입력");
+
+        let text = $("#box").html("JQuery가 넣은 값");
+        console.log(text);
+
+        $(".btn").on("click", function (){
+            $("#box").css({
+                "background-color" : "pink",
+                "color" : "dodgerblue"
+            })
+        })
+
+    </script>
+</body>
+
+</html>

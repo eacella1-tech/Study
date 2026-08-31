@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript"
+        src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c6def51d199d8167ff94d595d645325c"></script>
+    <style>
+        #map {
+            width: 500px;
+            height: 400px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="map"></div>
+    <div id="system"></div>
+    <button id="delAll">전체삭제</button>
+
+    <script>
+
+        let delAllBtn = document.getElementById("delAll");
+        delAllBtn.onclick = function () {
+            for (let marker of markers) {
+                marker.setMap(null);
+            }
+            markers = [];
+            document.getElementById("system").innerHTML = "현재 마커의 개수 : " + markers.length;
+        }
+
+        var container = document.getElementById('map');
+        var options = {
+            center: new kakao.maps.LatLng(33.450701, 126.570667),
+            level: 3
+        };
+        var map = new kakao.maps.Map(container, options);
+        var markers = [];
+
+        kakao.maps.event.addListener(map, 'click', function (mouseEvent) {
+            // 사용자가 지도위를 클릭했을 때, 클릭한 위치의 위경도 정보를 얻어오는 작업.
+            var latlng = mouseEvent.latLng;
+
+            // 마커를 생성하고 지도에 띄우는 작업
+            var marker = new kakao.maps.Marker({
+                position: latlng
+            });
+            marker.setMap(map);
+
+            kakao.maps.event.addListener(marker, "rightclick", function () {
+                marker.setMap(null);
+                markers.splice(markers.indexOf(marker), 1);
+                document.getElementById("system").innerHTML = "현재 마커의 개수 : " + markers.length;
+            });
+
+            // 배열에 저장 후 개수 출력하는 작업
+            markers.push(marker);
+            document.getElementById("system").innerHTML = "현재 마커의 개수 : " + markers.length;
+        });
+
+    </script>
+
+</body>
+
+</html>

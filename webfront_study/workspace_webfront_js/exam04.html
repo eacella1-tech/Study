@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="mydiv">TEST</div>
+
+    <input id="myinput" type="text" value="get this message">
+
+    <button id="mybtn">Button</button>
+
+    <script>
+        // let div = document.getElementById("mydiv");
+        // let text = div.innerHTML;
+        // console.log(text);
+
+        // div.innerHTML = "자바스크립트가 값 변경";
+
+        // let id = div.getAttribute("id");
+        // console.log(id);
+
+        // div.setAttribute("class", "mydiv");
+
+        // console.log(document.getElementById("myinput").value)
+
+
+        let btn = document.getElementById("mybtn");
+        btn.onclick = function () { 
+            alert("Event!");
+        }
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        div {
+            border: 2px solid black;
+        }
+
+        .box {
+            width: 150px;
+            height: 150px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+    <input id="input" type="text" placeholder="input text">
+    <hr>
+    <div id="box" class="box">box!</div>
+    <script>
+        let input = document.getElementById("input");
+        let box = document.getElementById("box");
+
+        input.onkeyup = function (e) {
+            if(e.key === "Enter") {
+                box.innerHTML = input.value;
+                input.value = "";
+            }
+        }
+
+
+    </script>
+</body>
+
+</html>
