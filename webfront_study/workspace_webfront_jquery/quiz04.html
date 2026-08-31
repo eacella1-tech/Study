@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+
+<body>
+
+    <fieldset>
+        <legend>데이터 입력</legend>
+        <input type="text" placeholder="input title" id="title"><br>
+        <input type="text" placeholder="input contents" id="contents"><br>
+        <input type="text" placeholder="input writer" id="writer"> <button id="input">입력</button>
+    </fieldset>
+    <hr>
+    <table border="1" id="table">
+        <tr>
+            <th>Title</th>
+            <th>Contents</th>
+            <th>Writer</th>
+            <th>Delete</th>
+        </tr>
+
+    </table>
+
+    <script>
+
+
+        $("#input").on("click", function () {
+            let title = $("#title").val();
+            let contents = $("#contents").val();
+            let writer = $("#writer").val();
+
+            let tr = $("<tr>");
+            let tdTitle = $("<td>");
+            tdTitle.html(title);
+
+            let tdContents = $("<td>");
+            tdContents.addClass("contents");
+            tdContents.html(contents);
+
+            let tdWriter = $("<td>");
+            tdWriter.html(writer);
+
+            let tdDelete = $("<td align=center>");
+            let btnDelete = $("<button>");
+            btnDelete.html("X");
+            tdDelete.append(btnDelete);
+            btnDelete.attr("class", "del")
+
+            tr.append(tdTitle, tdContents, tdWriter, tdDelete);
+            $("#table").append(tr);
+
+            $(btnDelete).on("click", function () {
+                console.log($($(this).closest("tr").siblings()[1]).find("button").remove());
+            })
+
+            $("#title").val("");
+            $("#contents").val("");
+            $("#writer").val("");
+        });
+
+
+
+
+
+
+    </script>
+
+</body>
+
+</html>

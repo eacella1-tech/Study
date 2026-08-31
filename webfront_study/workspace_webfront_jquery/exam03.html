@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+
+<body>
+    <!-- JQuery 는 배열을 일괄 제어할 수 있다.-->
+
+    <!-- <button>btn1</button>
+    <button>btn2</button>
+    <button>btn3</button>
+    <button>btn4</button>
+    <button>btn5</button> -->
+
+    <div>DIV1</div>
+    <div>DIV2</div>
+    <div>DIV3</div>
+    <div>DIV4</div>
+    <div>DIV5</div>
+
+    <script>
+
+        let divs = document.getElementsByTagName("div");
+
+        $(divs[2]).css("background-color", "pink"); 
+
+        // let btns = document.getElementsByTagName("button");
+
+        // for (let i = 0; i < btns.length; i++) {
+        //     btns[i].onclick = function () {
+        //         alert("TEST");
+        //     }
+        // }
+
+        // JQuery for문 없이 가능
+
+        // let btns = $("button");
+
+        // btns.on("click", function () {
+        //     alert($(this));
+        // })
+    </script>
+</body>
+
+</html>
