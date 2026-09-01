@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- jQuery 사용 -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <style>
+        /* 모든 요소의 크기를 border까지 포함해서 계산 */
+        * {
+            box-sizing: border-box;
+        }
+
+        /* 모든 div에 테두리 적용 */
+        div {
+            border: 1px solid black;
+        }
+
+        /* 게시글 작성 영역 */
+        .container {
+            width: 700px;
+            height: 150px;
+            margin: auto;
+        }
+
+        /* 작성자 입력 영역 */
+        .container>.box1 {
+            width: 100%;
+            height: 30%;
+            background-color: dodgerblue;
+        }
+
+        /* 작성자 input */
+        .container>.box1>input {
+            margin-top: 17px;
+            height: 60%;
+        }
+
+        /* 내용 영역과 Reply 버튼을 가로로 배치 */
+        .container>.box2,
+        .container>.box3 {
+            float: left;
+        }
+
+        /* 내용 입력 영역 */
+        .container>.box2 {
+            width: 76.5%;
+            height: 70%;
+        }
+
+        /* 내용 input */
+        .container>.box2>input {
+            width: 100%;
+            min-height: 100%;
+        }
+
+        /* Reply 버튼 영역 */
+        .container>.box3 {
+            width: 23.5%;
+            height: 70%;
+        }
+
+        /* Reply 버튼 */
+        .container>.box3>button {
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+            font-size: 20px;
+        }
+
+        /* 입력된 게시글 하나 */
+        .box {
+            width: 700px;
+            min-height: 130px;
+            margin: 10px auto;
+            display: flex;
+        }
+
+        /* 작성자와 내용을 담는 영역 */
+        .contentArea {
+            width: 100%;
+        }
+
+        /* 작성자 영역 */
+        .writer {
+            height: 30%;
+            padding: 10px;
+            border-bottom: 1px solid black;
+            background-color: dodgerblue;
+        }
+
+        /* 게시글 내용 */
+        .contents {
+            padding: 10px;
+        }
+
+        /* 삭제 / 수정 버튼 영역 */
+        .btnArea {
+            width: 30%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* 버튼에 마우스를 올렸을 때 커서 변경 */
+        .btnArea>button {
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- 게시글 작성 영역 -->
+    <div class="container">
+
+        <!-- 작성자 입력 -->
+        <div class="box1">
+            <input type="text" placeholder="작성자 명을 입력해주세요." id="name">
+        </div>
+
+        <!-- 내용 입력 -->
+        <div class="box2">
+            <input type="text" id="text" placeholder="내용을 입력해주세요.">
+        </div>
+
+        <!-- 게시글 등록 버튼 -->
+        <div class="box3">
+            <button id="btn">Reply</button>
+        </div>
+
+    </div>
+
+    <!-- 작성 영역과 게시글을 구분 -->
+    <hr>
+
+    <script>
+
+        // Reply 버튼 선택
+        let btn = $("#btn");
+
+        // Reply 버튼을 클릭했을 때 실행
+        btn.on("click", function () {
+
+            // 작성자와 내용의 입력값 가져오기
+            let name = $("#name").val();
+            let text = $("#text").val();
+
+            // 작성자가 비어있는지 확인
+            if (name == "") {
+                alert("작성자명을 입력해주세요.");
+                $("#name").focus();
+
+                // 여기서 함수를 종료해서 게시글이 생성되지 않도록 함
+                return;
+            }
+
+            // 내용이 비어있는지 확인
+            if (text == "") {
+                alert("내용을 입력해주세요.");
+                $("#text").focus();
+
+                // 여기서 함수를 종료
+                return;
+            }
+
+            // 게시글 전체를 담을 div 생성
+            let box = $("<div>");
+            box.addClass("box");
+
+            // 작성자와 내용을 담을 영역 생성
+            let contentArea = $("<div>");
+            contentArea.addClass("contentArea");
+
+            // 작성자 영역 생성
+            let writer = $("<div>");
+            writer.addClass("writer");
+
+            // 사용자가 입력한 작성자 이름 출력
+            writer.text(name + "님의 게시글");
+
+            // 내용 영역 생성
+            let content = $("<div>");
+            content.addClass("contents");
+
+            // 사용자가 입력한 내용 출력
+            content.text(text);
+
+            // contentArea 안에 작성자와 내용 추가
+            contentArea.append(writer, content);
+
+
+            // 버튼을 담을 영역 생성
+            let btnArea = $("<div>");
+            btnArea.addClass("btnArea");
+
+
+            // 삭제 버튼 생성
+            let deleteBtn = $("<button>");
+            deleteBtn.text("삭제");
+
+            // 수정 버튼 생성
+            let updateBtn = $("<button>");
+            updateBtn.text("수정");
+
+            // 취소 버튼 생성
+            let escBtn = $("<button>");
+            escBtn.text("취소");
+
+            // 수정완료 버튼 생성
+            let okBtn = $("<button>");
+            okBtn.text("수정완료");
+
+
+            // 처음에는 수정 관련 버튼을 숨김
+            escBtn.hide();
+            okBtn.hide();
+
+
+            // 버튼 4개를 버튼 영역에 추가
+            btnArea.append(deleteBtn, updateBtn, escBtn, okBtn);
+
+            // 게시글 안에 내용 영역과 버튼 영역 추가
+            box.append(contentArea, btnArea);
+
+
+            // 삭제 버튼을 클릭하면 해당 게시글 전체 삭제
+            deleteBtn.on("click", function () {
+                box.remove();
+            });
+
+
+            // 수정 전 원래 내용을 저장할 변수
+            let originalText = "";
+
+
+            // 수정 버튼 클릭
+            updateBtn.on("click", function () {
+
+                // 수정하기 전 내용을 저장
+                originalText = content.text();
+
+                // 내용 영역을 직접 수정할 수 있도록 설정
+                content.attr("contenteditable", "true");
+
+                // 내용 영역에 포커스
+                content.focus();
+
+
+                // 삭제와 수정 버튼 숨김
+                deleteBtn.hide();
+                updateBtn.hide();
+
+                // 취소와 수정완료 버튼 표시
+                escBtn.show();
+                okBtn.show();
+
+            });
+
+
+            // 취소 버튼 클릭
+            escBtn.on("click", function () {
+
+                // 수정하기 전 내용으로 다시 변경
+                content.text(originalText);
+
+                // 다시 수정할 수 없도록 설정
+                content.attr("contenteditable", "false");
+
+
+                // 삭제와 수정 버튼 표시
+                deleteBtn.show();
+                updateBtn.show();
+
+                // 취소와 수정완료 버튼 숨김
+                escBtn.hide();
+                okBtn.hide();
+
+            });
+
+
+            // 수정완료 버튼 클릭
+            okBtn.on("click", function () {
+
+                // 수정이 끝났으므로 다시 수정할 수 없도록 설정
+                content.attr("contenteditable", "false");
+
+
+                // 삭제와 수정 버튼 표시
+                deleteBtn.show();
+                updateBtn.show();
+
+                // 취소와 수정완료 버튼 숨김
+                escBtn.hide();
+                okBtn.hide();
+
+            });
+
+
+            // hr 태그 바로 아래에 새 게시글 추가
+            $("hr").after(box);
+
+
+            // 입력창 초기화
+            $("#name").val("");
+            $("#text").val("");
+
+        });
+
+    </script>
+
+</body>
+
+</html>
