@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <fieldset>
+        <legend>목록</legend>
+        <span id="listbox"></span>
+    </fieldset>
+    <div><input id="text" type="text" placeholder="input word to add">
+        <button id="addbtn">Add</button>
+    </div>
+    <div><input id="text1" type="text" placeholder="input word to delete">
+        <button id="delbtn">Del</button>
+    </div>
+    <script>
+        let arr = [];
+        let listbox = document.getElementById("listbox");
+
+        let text = document.getElementById("text");
+        let addbtn = document.getElementById("addbtn");
+
+        let text1 = document.getElementById("text1");
+        let delbtn = document.getElementById("delbtn")
+
+        addbtn.onclick = function () {
+            if (text.value === "") {
+                alert("추가 할 내용을 입력해주세요.");
+            } else {
+                arr.push(text.value);
+                listbox.textContent = arr;
+                text.value = "";
+            }
+        }
+        delbtn.onclick = function () {
+            if(text1.value === "") {
+                alert("삭제 할 내용을 입력해주세요.")
+            } else {
+                let index = arr.indexOf(text1.value);
+                if(text1.value === -1) {
+                    alert("존재하지 않습니다.");
+                } else {
+                    arr.splice(index, 1);
+                    listbox.textContent = arr;
+                    text1.value = "";
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

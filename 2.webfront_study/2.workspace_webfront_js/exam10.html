@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let person = {
+            name: "Jack",
+            contact: "01043214321",
+            hello: function () {
+                console.log("I'm " + this.name);
+            },
+            hobbies: ["Java", "Guitar", "Book"],
+            score: {
+                kor: 100, eng: 80, math: 90
+            },
+            favoriteFruits: function () {
+                return ["Apple", "Grape", "Mango", "BlueBerry"];
+            },
+            abilities: function () {
+                return {
+                    java: function () { return 100; },
+                    css: function () { return 90; },
+                    js: function () { return 80; }
+                }
+            },
+            helloTo: function (friends) {
+                console.log("Hello " + friends[0].name);
+            },
+            Dron: function () {
+                this.brand = "DIY";
+                this.price = 100000;
+            }
+
+        };
+        let dron = new person.Dron();
+        console.log(dron);
+
+        // Hello Susan 을 출력
+        person.helloTo([{ name: "Susan" }]);
+        //특기중 js점수를 출력
+        console.log(person.abilities().js());
+        //Jack의 2번째 취미
+        console.log(person.hobbies[1]);
+        //수학 점수 출력
+        console.log(person.score.math);
+        //첫 번째로 좋아하는 과일 출력
+        console.log(person.favoriteFruits()[1]);
+
+    </script>
+</body>
+
+</html>

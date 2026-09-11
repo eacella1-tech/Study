@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<!-- position:relative-->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        div {
+            border: 1px solid black;
+        }
+
+        .container {
+            width: 500px;
+            height: 500px;
+            margin: auto;
+        }
+
+        .box {
+            width: 100px;
+            height: 100px;
+        }
+
+        #box1 {
+            position: relative;
+            top: 50px;
+            left: 50px;
+            background-color: pink;
+            z-index: 5;
+        }
+
+        #box2 {
+            background-color: #0000FF50;
+            position: relative;
+            z-index: 6;
+            top: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div id="box1" class="box"></div>
+        <div id="box2" class="box"></div>
+    </div>
+</body>
+
+</html>

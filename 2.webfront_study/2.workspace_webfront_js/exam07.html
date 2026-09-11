@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let fruits = ["Apple", "Orange", "Mango"];
+
+        console.log(fruits);
+        fruits.push("Grape"); //배열 가장 뒤쪽에 데이터 1개를 추가
+        console.log(fruits);
+        
+        let pop = fruits.pop(); // 배열 가장 뒤쪽에 데이터 1개를 제거
+        console.log(pop);
+        console.log(fruits);
+        // 배열 뒤쪽에 데이터를 추가하거나 제거 ( push / pop )
+
+
+        fruits.unshift("Strawberry"); // 배열 가장 앞쪽에 데이터 추가
+        console.log(fruits);
+
+        fruits.shift(); //배열 가장 앞쪽에 데이터를 제거
+        console.log(fruits);
+
+        document.write(fruits);
+
+
+        // let index = fruits.indexOf("Orange");
+        // console.log(index);
+    </script>
+</body>
+
+</html>

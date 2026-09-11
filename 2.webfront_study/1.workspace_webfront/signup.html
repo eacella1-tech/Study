@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background-color: #f5f6f8;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            width: 400px;
+            margin: 60px auto;
+            padding: 35px 30px;
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+        }
+
+        h2 {
+            margin: 0 0 30px;
+            text-align: center;
+        }
+
+        .container>div {
+            border: none;
+        }
+
+        fieldset {
+            margin: 0 0 20px;
+            padding: 20px 15px;
+            border: 1px solid #ddd;
+            border-radius: 7px;
+        }
+
+        legend {
+            padding: 0 8px;
+            font-size: 14px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        label {
+            display: inline-block;
+            margin-bottom: 7px;
+            font-size: 13px;
+            font-weight: bold;
+            color: #444;
+        }
+
+        input {
+            width: 100%;
+            height: 40px;
+            margin-bottom: 15px;
+            padding: 0 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 13px;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #555;
+        }
+
+        input::placeholder {
+            color: #aaa;
+        }
+
+        /* 우편번호 입력 */
+        .footer input {
+            width: 55%;
+        }
+
+        .footer button {
+            width: 40%;
+            height: 40px;
+            margin-left: 3%;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f8f8f8;
+            color: #444;
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        .footer button:hover {
+            background-color: #eee;
+        }
+
+        /* 주소 입력창 */
+        .footer input:nth-of-type(2),
+        .footer input:nth-of-type(3) {
+            width: 100%;
+        }
+
+        /* 버튼 영역 */
+        .btn {
+            display: flex;
+            gap: 10px;
+            height: auto;
+            margin-top: 5px;
+        }
+
+        .btn button {
+            flex: 1;
+            height: 45px;
+            border: none;
+            border-radius: 5px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .btn button:first-child {
+            background-color: #333;
+            color: white;
+        }
+
+        .btn button:first-child:hover {
+            background-color: #222;
+        }
+
+        .btn button:last-child {
+            background-color: #eee;
+            color: #444;
+        }
+
+        .btn button:last-child:hover {
+            background-color: #ddd;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2 align="center">회원가입</h2>
+        <div class="header">
+            <fieldset>
+                <legend>계정 정보</legend>
+                <label>아이디</label><br>
+                <input type="text" placeholder="아이디 입력(최대 30자)"><br>
+                <label>비밀번호</label><br>
+                <input type="password" placeholder="비밀번호 입력"><br>
+                <label>비밀번호 확인</label><br>
+                <input type="password" placeholder="비밀번호 재입력">
+            </fieldset>
+        </div>
+        <div class="middle">
+            <fieldset>
+                <legend>개인 정보</legend>
+                <label>이름</label><br>
+                <input type="text" placeholder="아이디 입력(최대 30자)"><br>
+                <label>연락처</label><br>
+                <input type="text" placeholder="'-' 제외 숫자만 입력 (최대 11자리)"><br>
+                <label>이메일</label><br>
+                <input type="text" placeholder="example@domain.com"><br>
+            </fieldset>
+        </div>
+        <div class="footer">
+            <fieldset>
+                <legend>주소 정보</legend>
+                <label>우편 번호</label><br>
+                <input type="text" placeholder="우편번호 (5자리)">
+                <button>우편번호 찾기</button><br>
+                <label>주소1</label><br>
+                <input type="text" placeholder="기본 주소"><br>
+                <label>주소2</label><br>
+                <input type="text" placeholder="상세 주소"><br>
+            </fieldset>
+        </div>
+        <div class="btn">
+            <button>가입하기</button>
+            <button>취소</button>
+        </div>
+    </div>
+</body>
+
+</html>

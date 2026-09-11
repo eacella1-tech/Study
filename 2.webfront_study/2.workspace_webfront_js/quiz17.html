@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>회원가입</title>
+
+    <script src="//t1.kakaocdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        .container {
+            border: 1px solid black;
+            width: 400px;
+            height: 900px;
+            margin: auto;
+            border-radius: 10px;
+        }
+
+        #title {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container fieldset {
+            margin: 20px;
+            font-weight: bold;
+            border-radius: 10px;
+        }
+
+        .field1 {
+            height: 250px;
+        }
+
+        .field2 {
+            height: 250px;
+        }
+
+        .field3 {
+            height: 180px;
+        }
+
+        .container fieldset input {
+            width: 100%;
+            height: 35px;
+
+        }
+
+        .container>.header>#title {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+        }
+
+        .id,
+        .password,
+        .password1,
+        .name,
+        .phone,
+        .email {
+            margin-bottom: 10px;
+        }
+
+        input {
+            margin-top: 5px;
+        }
+
+        .zipcode {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 10px;
+        }
+
+        .zipcode input {
+            flex: 1;
+            margin-top: 0;
+        }
+
+        .zipcode button {
+            width: 100px;
+            height: 35px;
+            cursor: pointer;
+        }
+
+        .address {
+            margin-bottom: 10px;
+        }
+
+        .button {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        #accession,
+        #reset {
+            width: 100px;
+            height: 40px;
+            cursor: pointer;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container">
+        <form action = "test" id="frm">
+            <div id="title">
+                <h2>회원가입</h2>
+            </div>
+
+            <div class="header"></div>
+            <fieldset class="field1">
+
+                <legend>아이디/패스워드</legend>
+                <div class="id">
+                    아이디
+                    <div><input id="id" type="text" placeholder="아이디를 입력해주세요"></div>
+                </div>
+
+                <div class="password">
+                    비밀번호
+                    <div><input id="password" type="password" placeholder="패스워드를 입력해주세요"></div>
+                </div>
+
+                <div class="password1">
+                    비밀번호 확인
+                    <div><input id="password1" type="password" placeholder="패스워드를 다시 입력하세요"></div>
+                </div>
+
+            </fieldset>
+
+            <div class="middle">
+                <fieldset class="field2">
+                    <legend>이름/전화번호/이메일</legend>
+                    <div class="name">
+                        이름
+                        <div><input id="name" type="text" placeholder="이름을 입력하세요"></div>
+                    </div>
+
+                    <div class="phone">
+                        전화번호
+                        <div><input id="phone" type="text" placeholder="010-0000-0000"></div>
+                    </div>
+
+                    <div class="email">
+                        이메일
+                        <div><input id="email" type="text" placeholder="이메일을 입력하세요">
+                        </div>
+                    </div>
+
+                </fieldset>
+
+                <div class="footer">
+                    <fieldset class="field3">
+                        <legend>주소</legend>
+                        <div class="zipcode">
+                            <input id="zipcode" type="text" readonly placeholder="우편번호를 입력해주세요">
+                            <button id="search" type="button">우편번호 찾기</button>
+                        </div>
+
+                        <div class="address">
+                            <input id="address" type="text" readonly placeholder="주소를 입력해주세요">
+                        </div>
+
+                        <div class="address1">
+                            <input id="address1" type="text" placeholder="상세 주소를 입력하세요">
+                        </div>
+
+                    </fieldset>
+                </div>
+
+                <div class="button">
+                    <button id="accession" type="button">가입하기</button>
+                    <button id="reset" type="button">초기화</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <script>
+
+        let id = document.getElementById("id");
+        let password = document.getElementById("password");
+        let password1 = document.getElementById("password1");
+        let name = document.getElementById("name");
+        let phone = document.getElementById("phone");
+        let email = document.getElementById("email");
+
+        let zipcode = document.getElementById("zipcode");
+        let address = document.getElementById("address");
+        let address1 = document.getElementById("address1");
+
+        let acebtn = document.getElementById("accession");
+        let reset = document.getElementById("reset");
+        let form = document.getElementById("frm");
+
+
+        let idRegex = /^[a-z0-9_]{8,20}$/;
+
+        let passUpperRegex = /[A-Z]/;
+        let passLowRegex = /[a-z]/;
+        let passNumberRegex = /\d/;
+        let passSpecialRegex = /[!@#$%^&*]/;
+        let passLengthRegex = /^.{8,}$/;
+
+        let nameRegex = /^[가-힣]{2,5}$/;
+
+        let phoneRegex = /^010-?\d{4}-?\d{4}$/;
+
+        let emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+
+        form.onsubmit = function (e) {
+
+            if (!idRegex.test(id.value)) {
+                alert("아이디가 형식에 맞지 않습니다.");
+                id.focus();
+                return;
+            }
+
+
+            if (!passUpperRegex.test(password.value)) {
+                alert("비밀번호에 대문자를 하나 이상 포함해주세요.");
+                password.focus();
+                return;
+            }
+            if (!passLowRegex.test(password.value)) {
+                alert("비밀번호에 소문자를 하나 이상 포함해주세요.")
+                password.focus();
+                return;
+            }
+            if (!passNumberRegex.test(password.value)) {
+                alert("비밀번호에 숫자를 하나 이상 포함해주세요.")
+                password.focus();
+                return;
+            }
+            if (!passSpecialRegex.test(password.value)) {
+                alert("비밀번호에 특수문자를 하나 이상 포함해주세요.")
+                password.focus();
+                return;
+            }
+            if (!passLengthRegex.test(password.value)) {
+                alert("비밀번호는 대문자, 소문자, 숫자 , 특수문자를 포함한 8자 이상이어야 합니다. ")
+                password.focus();
+                return;
+            }
+
+
+            if (password.value !== password1.value) {
+                alert("비밀번호가 일치하지 않습니다.");
+                password1.focus();
+                return;
+            }
+
+            if (!nameRegex.test(name.value)) {
+                alert("이름은 한글로 2~5자로 입력해주세요.");
+                name.focus();
+                return;
+            }
+
+
+            if (!phoneRegex.test(phone.value)) {
+                alert("올바른 전화번호 형식이 아닙니다.");
+                phone.focus();
+                return;
+            }
+
+            if (!emailRegex.test(email.value)) {
+                alert("올바른 이메일 형식이 아닙니다.");
+                email.focus();
+                return;
+            }
+            if (zipcode.value === "" || address.value === "" || address1.value === "") {
+                alert("주소를 모두 입력해주세요.");
+                address1.focus();
+                return;
+            }
+
+            alert("회원가입이 완료되었습니다.");
+            id.value = "";
+            password.value = "";
+            password1.value = "";
+            name.value = "";
+            phone.value = "";
+            email.value = "";
+            document.getElementById("zipcode").value = "";
+            document.getElementById("address").value = "";
+            document.getElementById("address1").value = "";
+
+        };
+
+
+        reset.onclick = function () {
+
+            id.value = "";
+            password.value = "";
+            password1.value = "";
+            name.value = "";
+            phone.value = "";
+            email.value = "";
+            document.getElementById("zipcode").value = "";
+            document.getElementById("address").value = "";
+            document.getElementById("address1").value = "";
+
+        };
+
+        document.getElementById("search").onclick = function () {
+            new kakao.Postcode({
+                oncomplete: function (data) {
+                    document.getElementById("zipcode").value = data.zonecode;
+                    document.getElementById("address").value = data.jibunAddress;
+                }
+            }).open();
+        };
+
+    </script>
+
+</body>
+
+</html>

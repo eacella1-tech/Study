@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <style>
+        div {
+            border: 1px solid black;
+        }
+
+        .box {
+            width: 100px;
+            height: 100px;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- 동적 Element 제어(CUD) 문법 
+        정적 요소 : 페이지가 처음 랜더링 되는 시점에 화정에 나타나서 고정된 요소돌.
+        동적 요소 : 최초 렌더링 이후 추가적으로 생성되거나 사라지거나 변형되는 요소들.
+        append, prepend, before, after / remove 
+    -->
+
+
+    <div class="box">
+        기존내용<br>
+    </div>
+    <script>
+        // 메모리 속에 존재하는 instance
+
+        let appendButton = $("<button>");
+        appendButton.html("Append");
+
+        let prependDiv = $("<div>");
+        prependDiv.html("Prepend");
+        prependDiv.css("background-color", "dodgerblue");
+
+
+        // $(".box").append("<button>Append</button>");
+        $(".box").append(appendButton);
+
+        // $(".box").prepend("<div style='background-color:dodgerblue'>Prepend</div>");
+        $(".box").prepend(prependDiv);
+
+        $(".box").after("여기가 After");
+        $(".box").before("여기가 Before");
+
+    </script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        div {
+            border: 1px solid black
+        }
+
+        .container {
+            margin: auto;
+            width: 400px;
+            height: 200px;
+        }
+
+        .container>.box1 {
+            height: 40%;
+        }
+
+        .container>.box1>#box1-1 {
+            width: 100%;
+            height: 100%;
+            font-size: 20px;
+            text-align: center;
+        }
+
+        .container>.box2 {
+            height: 40%;
+        }
+
+        .container>.box2>#box2-1 {
+            width: 100%;
+            height: 100%;
+            font-size: 20px;
+            text-align: center;
+        }
+
+        .container>.box3 {
+            height: 20%;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="box1">
+            <input id="box1-1" type="text" placeholder="패스워드 입력">
+        </div>
+        <div class="box2">
+            <input id="box2-1" type="text" placeholder="패스워드 확인">
+        </div>
+        <div id="result" class="box3"></div>
+    </div>
+    <script>
+        let pass1 = document.getElementById("box1-1");
+        let pass2 = document.getElementById("box2-1");
+        let result = document.getElementById("result");
+
+        pass2.onkeyup = function () {
+
+            if (pass2.value === "") {
+                result.innerHTML = "";
+            } else if (pass1.value === pass2.value) {
+                result.innerHTML = "패스워드가 일치합니다.";
+            } else {
+                result.innerHTML = "<strong>패스워드가 일치하지 않습니다.</strong>";
+            }
+        }
+    </script>
+</body>
+
+</html>

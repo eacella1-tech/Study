@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+
+<body>
+    <div id="home">
+        Home
+        <div id="grand_parent">
+            GrandParent
+            <div id="parent01">
+                Parent01
+                <div id="brother01">
+                    Brother01
+                </div>
+                <div id="me">
+                    Me
+                    <div id="sister01">
+                        Sister01
+                        <div id="baby">
+                            Baby01
+                        </div>
+                    </div>
+                    <div id="sister02">
+                        Sister02
+                    </div>
+                </div>
+                <div id="brother02">
+                    Brother02
+                </div>
+            </div>
+            <div id="parent02">
+                Parent02
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $("#me").find("#baby").css("background-color", "pink");
+
+        $("#me").siblings("#brother02").css("color", "forestgreen");
+
+        $("#parent02").siblings("#parent01").find("#sister02").css("border", "1px dotted wheat");
+
+        $("#me").closest("#grand_parent").find("#parent02").css("background-color", "dodgerblue");
+    </script>
+</body>
+
+</html>

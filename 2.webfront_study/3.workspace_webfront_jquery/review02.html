@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div>
+        <fieldset id="field">
+            <legend>파일첨부
+                <button id="addbtn">+</button>
+            </legend>
+        </fieldset>
+    </div>
+    <script>
+        let count = 0;
+        let btn = $("#addbtn");
+        let field = $("#field");
+
+
+        btn.on("click", function () {
+
+            if (count >= 5) {
+                alert("최대 5개까지 파일이 선택 가능합니다.");
+                return;
+            }
+
+            let list = "<div>"
+                + "<input type ='file'>"
+                + "<button type='button' class='remove'>X</button>"
+                + "</div>";
+
+            field.append(list);
+
+            count++;
+
+        })
+        field.on("click", ".remove", function () {
+            $(this).parent().remove();
+            count--;
+        });
+    </script>
+</body>
+
+</html>

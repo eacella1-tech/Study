@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <Style>
+
+    </Style>
+</head>
+
+<body>
+    <fieldset>
+        <legend>Fruits</legend>
+        <span id="fruitsbox">Apple,Orange,Mango</span>
+    </fieldset>
+    <div><input id="text" type="text">
+        <button id="frontaddbtn">앞쪽에 추가</button>
+        <button id="frontdeletebtn">앞쪽에 삭제</button>
+    </div>
+    <div><input id="text1" type="text">
+        <button id="backaddbtn">뒤쪽에 추가</button>
+        <button id="backdeletebtn">뒤쪽에 삭제</button>
+    </div>
+    <script>
+        let fruits = ["Apple", "Orange", "Mango"];
+        let fruitsbox = document.getElementById("fruitsbox")
+        let text = document.getElementById("text");
+        let frontaddbtn = document.getElementById("frontaddbtn");
+        let frontdeletebtn = document.getElementById("frontdeletebtn");
+
+        let text1 = document.getElementById("text1");
+        let backaddbtn = document.getElementById("backaddbtn");
+        let backdeletebtn = document.getElementById("backdeletebtn");
+
+        frontaddbtn.onclick = function () {
+            if (text.value == "") {
+                alert("과일을 입력해주세요.");
+            } else {
+                fruits.unshift(text.value);
+                fruitsbox.textContent = fruits;
+                text.value = "";
+            }
+        };
+
+        frontdeletebtn.onclick = function () {
+            if (fruits.length == 0) {
+                alert("삭제할 과일이 없습니다.");
+            } else {
+                fruits.shift();
+                fruitsbox.textContent = fruits;
+            }
+        };
+
+        backaddbtn.onclick = function () {
+            if (text1.value == "") {
+                alert("과일을 입력해주세요.");
+            } else {
+                fruits.push(text1.value);
+                fruitsbox.textContent = fruits;
+                text1.value = "";
+            }
+        };
+
+        backdeletebtn.onclick = function () {
+            if (fruits.length == 0) {
+                alert("삭제할 과일이 없습니다.");
+            } else {
+                fruits.pop();
+                fruitsbox.textContent = fruits;
+            }
+        };
+    </script>
+</body>
+
+</html>

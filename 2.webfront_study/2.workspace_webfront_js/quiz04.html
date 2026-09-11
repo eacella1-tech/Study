@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <Style>
+        .box {
+            border: 1px solid black;
+            width: 100px;
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </Style>
+</head>
+
+<body>
+    <input id="msg" type="text" placeholder="input text to event">
+    <button id="event">
+        Event!</button>
+    <hr>
+    <div id="box" class="box">Box!</div>
+    <script>
+        let btn = document.getElementById("event");
+        let box = document.getElementById("box")
+        let input = document.getElementById("msg");
+
+        btn.onclick = function () {
+            box.innerHTML = input.value;
+            input.value = "";
+        }
+
+    </script>
+</body>
+
+</html>

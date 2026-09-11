@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let str = "안녕하세요. 저는 TOM입니다. 급한일이 있다면 010-1234-4321 또는 010-9876-9876 으로 연락주세요.";
+
+        let regex = /(010-?\d{4}-?\d{4}) 또는 (010-?\d{4}-?\d{4})/g;
+        let result = regex.exec(str);
+        console.log(result);
+
+        // result = regex.exec(str);
+        // console.log(result);
+    </script>
+</body>
+
+</html>
