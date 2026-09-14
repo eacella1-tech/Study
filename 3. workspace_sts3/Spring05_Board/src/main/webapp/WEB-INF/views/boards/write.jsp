@@ -125,7 +125,7 @@ body {
 		
 				<div class="box" id="box2">
 					<label>작성자</label> 
-					<input type="text" name="writer" value="${loginId}"> 
+					<input type="text" name="writer" value="${loginId}" readonly> 
 					<label>제목</label> 
 					<input type="text" name="title" placeholder="제목을 입력하세요.(최대 300바이트)"> 
 					<label>내용</label>
@@ -134,6 +134,7 @@ body {
 
 			<div class="box" id="box3">
 				<button type="button" id="cancel">취소</button>
+				<input type="hidden" name="cpage" value="1">
 				<button type="submit">작성완료</button>
 			</div>
 
@@ -141,7 +142,7 @@ body {
 	</form>
 	<script>
 	document.getElementById("cancel").onclick = function () {
-		location.href = "/boards/board";
+		location.href = "/boards/board?cpage=1";
 	}
 	</script>
 </body>

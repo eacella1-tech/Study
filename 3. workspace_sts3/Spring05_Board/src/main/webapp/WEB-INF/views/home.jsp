@@ -175,6 +175,7 @@ h2 {
 					<h3>${loginId}님환영합니다.</h3>
                     <div class="board">
 						<form action="/boards/board">
+							<input type="hidden" name="cpage" value="1">
 							<button type="submit">게시판</button>
 						</form>
 					</div>

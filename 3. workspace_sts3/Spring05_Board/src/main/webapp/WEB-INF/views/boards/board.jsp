@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>게시판</title>
-	<style>
+<style>
 * {
 	box-sizing: border-box;
 }
@@ -19,13 +19,13 @@ body {
 }
 
 .container {
-    margin: 60px auto;
-    width: 700px;
-    min-height: 400px;
-    background-color: white;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    padding: 30px;
+	margin: 60px auto;
+	width: 700px;
+	min-height: 400px;
+	background-color: white;
+	border: 1px solid #ddd;
+	border-radius: 10px;
+	padding: 30px;
 }
 
 h2 {
@@ -79,10 +79,10 @@ table td:nth-child(5) {
 }
 
 .btn {
-    margin-top: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+	margin-top: 20px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 }
 
 button {
@@ -108,14 +108,24 @@ button:hover {
 .btn button:last-child:hover {
 	background-color: #555;
 }
+
 a {
-    color: #333;
-    text-decoration: none;
+	color: #333;
+	text-decoration: none;
 }
 
 a:hover {
-    text-decoration: underline;
+	text-decoration: underline;
 }
+
+.pagination {
+	margin-top: 20px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 6px;
+}
+
 </style>
 </head>
 
@@ -134,9 +144,9 @@ a:hover {
 				<td>조회수</td>
 			</tr>
 			<c:choose>
-				<c:when test="${list ==null}">
-					<tr> 
-						<td colspan="5" class="empty"> 작성된 내용이 없습니다. </td> 
+				<c:when test="${list == null}">
+					<tr>
+						<td colspan="5" class="empty">작성된 내용이 없습니다.</td>
 					</tr>
 				</c:when>
 				<c:otherwise>
@@ -145,14 +155,18 @@ a:hover {
 							<td>${dto.seq}</td>
 							<td><a href="/boards/detail?seq=${dto.seq}">${dto.title}</td>
 							<td>${dto.writer}</td>
-							<td><fmt:formatDate value="${dto.write_date}" pattern="yyyy-MM-dd"/></td>
+							<td><fmt:formatDate value="${dto.write_date}"
+									pattern="yyyy-MM-dd" /></td>
 							<td>${dto.view_count}</td>
 						</tr>
 					</c:forEach>
-				</c:otherwise>	
-				</c:choose>
+				</c:otherwise>
+			</c:choose>
 		</table>
-					123456789
+
+		<!-- 페이징 네비게이터 (껍데기) -->
+		<div class="pagination" align="center" id="navigation">${navi}</div>
+
 		<div class="btn">
 			<button id="home">홈으로</button>
 			<form action="/boards/write">
@@ -162,6 +176,46 @@ a:hover {
 
 	</div>
 	<script>
+		let recordTotalCount = ${recordTotalCount};
+		let recordCountPerPage = ${recordCountPerPage};
+		let naviCountPerPage = ${naviCountPerPage};
+		let currentPage = ${cpage};
+		
+		let pageTotalCount = Math.ceil(recordTotalCount / recordCountPerPage);
+		
+		
+		
+		let startNavi = Math.floor((currentPage-1) / naviCountPerPage) * naviCountPerPage + 1;
+		
+		let endNavi = startNavi + naviCountPerPage - 1 ;
+		
+		if(endNavi > pageTotalCount) {
+			endNavi = pageTotalCount;
+		}
+		let needPrev = startNavi > 1;
+		let needNext = endNavi < pageTotalCount;
+		
+		let navi = document.getElementById("navigation");
+		
+		if(needPrev) {
+			let prev = document.createElement("a");
+			prev.setAttribute("href","/boards/board?cpage="+ (startNavi - 1));
+			prev.innerHTML = "< ";
+			navi.append(prev);
+		}
+		for(let i = startNavi; i <= endNavi; i++) {
+			let num = document.createElement("a");
+			num.setAttribute("href","/boards/board?cpage="+i);
+			num.innerHTML = i;
+			navi.append(num);
+		}
+		if(needNext) {
+			let next = document.createElement("a");
+			next.setAttribute("href","/boards/board?cpage="+ (endNavi + 1));
+			next.innerHTML = " >";
+			navi.append(next);
+		}
+	
 		document.getElementById("home").onclick = function () {
 			location.href = "/";
 		}
