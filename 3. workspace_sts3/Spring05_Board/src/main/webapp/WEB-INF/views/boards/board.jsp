@@ -134,6 +134,30 @@ a:hover {
 	align-items: center;
 	gap: 6px;
 }
+.pagination a {
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	min-width: 32px;
+	height: 32px;
+	padding: 0 8px;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	background-color: white;
+	color: #555;
+	font-size: 13px;
+	text-decoration: none;
+}
+
+.pagination a:hover {
+	background-color: #f5f5f5;
+	border-color: #bbb;
+}
+
+.pagination a:first-child,
+.pagination a:last-child {
+	color: #888;
+}
 
 </style>
 </head>

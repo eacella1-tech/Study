@@ -78,7 +78,7 @@ public class MemberController {
 
 	@RequestMapping("/idcheck")
 	public String idcheck(String id, Model model) throws Exception {
-		boolean result = dao.idCheck(id);
+		boolean result = dao.IdCheck(id);
 		model.addAttribute("id", id);
 		model.addAttribute("result", result);
 		return "members/idcheck_view";

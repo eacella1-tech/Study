@@ -1,6 +1,7 @@
 package com.kedu.controllers;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -26,7 +27,7 @@ public class BoardController {
 
 	@RequestMapping("/board")
 	public String boardlist(int cpage, Model model) throws Exception {
-		ArrayList<BoardsDTO> list = dao.selectFromTo(cpage * 10 - 9 , cpage * 10);
+		List<BoardsDTO> list = dao.selectFromTo(cpage * 10 - 9 , cpage * 10);
 
 		model.addAttribute("list", list);
 		model.addAttribute("recordTotalCount", dao.selectCount());
@@ -87,7 +88,7 @@ public class BoardController {
 
 	    BoardsDTO dto = dao.detail(seq);
 
-	    ArrayList<ReplyDTO> replyList = replydao.selectByParentSeq(seq);
+	    List<ReplyDTO> replyList = replydao.selectByParentSeq(seq);
 
 	    model.addAttribute("dto", dto);
 	    model.addAttribute("loginId", session.getAttribute("loginId"));
