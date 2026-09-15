@@ -1,4 +1,3 @@
-```jsp
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -48,7 +47,7 @@ body {
 }
 
 .box {
-	width: 100%;
+	width: 100%;	
 }
 
 
@@ -883,4 +882,3 @@ body {
 </body>
 
 </html>
-```
