@@ -58,6 +58,14 @@ table td:nth-child(1) {
 
 table td:nth-child(2) {
 	width: 50%;
+	max-width: 350px;
+}
+
+table td:nth-child(2) a {
+	display: block;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 table td:nth-child(3) {
@@ -66,6 +74,7 @@ table td:nth-child(3) {
 
 table td:nth-child(4) {
 	width: 15%;
+	white-space: nowrap;
 }
 
 table td:nth-child(5) {

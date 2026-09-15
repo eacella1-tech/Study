@@ -116,7 +116,7 @@ body {
 </head>
 
 <body>
-	<form action="/boards/complete" method="post">
+	<form action="/boards/complete" method="post" id="writeForm">
 		<div class="container">
 			
 				<div class="box" id="box1">
@@ -141,9 +141,28 @@ body {
 		</div>
 	</form>
 	<script>
+	document.getElementById("writeForm").onsubmit = function () {
+
+		let title = document.querySelector("input[name='title']").value.trim();
+		let contents = document.querySelector("textarea[name='contents']").value.trim();
+
+		if (title == "") {
+			alert("제목을 입력해주세요.");
+			return false;
+		}
+
+		if (contents == "") {
+			alert("내용을 입력해주세요.");
+			return false;
+		}
+
+		return true;
+	};
+
 	document.getElementById("cancel").onclick = function () {
 		location.href = "/boards/board?cpage=1";
-	}
+	};
+	
 	</script>
 </body>
 

@@ -134,18 +134,12 @@ body {
 				</div>
 				
 				<div class="box" id="box3">
-					<button id="cancel">취소</button>
+					<button type="button" id="cancel" onclick="history.back()">취소</button>
 					<button>수정완료</button>
 				</div>
 			
 		</div>
 	</form>
-	<script>
-	document.getElementById("cancel").onclick = function () {
-		location.href = "/boards/board";
-	}
-	</script>
 </body>
-
 
 </html>

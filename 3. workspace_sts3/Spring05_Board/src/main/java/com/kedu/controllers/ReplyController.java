@@ -33,6 +33,19 @@ public class ReplyController {
 		return "redirect:/boards/detail?seq="+ seq;
 		
 	}
+	@RequestMapping("/update")
+	public String updatecomment(ReplyDTO dto, HttpSession session) throws Exception {
+	    String id = (String) session.getAttribute("loginId");
+
+	    ReplyDTO org = dao.selectOne(dto.getSeq());
+
+	    if(org != null && id != null && id.equals(org.getWriter())) {
+	        dao.updatecomment(dto);
+	    }
+
+	    return "redirect:/boards/detail?seq=" + dto.getParent_seq();
+	}
+
 	
 	@RequestMapping("/delete")
 	public String deletecomment (int seq, int parent_seq,HttpSession session) throws Exception {
