@@ -8,6 +8,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.kedu.dto.BoardsDTO;
+import com.kedu.dto.FilesDTO;
 
 @Repository
 public class BoardsDAO {
@@ -26,8 +27,8 @@ public class BoardsDAO {
 	}
 	
 	public int insert(BoardsDTO dto) {
-		String sql = "insert into board (seq, title, contents, writer, view_count, write_date) values(board_seq.nextval, ? , ? , ? , 0, CURRENT_TIMESTAMP)";
-		return jdbc.update(sql, dto.getTitle(), dto.getContents(), dto.getWriter());
+		String sql = "insert into board (seq, title, contents, writer, view_count, write_date) values(?, ? , ? , ? , 0, CURRENT_TIMESTAMP)";
+		return jdbc.update(sql, dto.getSeq(), dto.getTitle(), dto.getContents(), dto.getWriter());
 	}
 	
 	public List<BoardsDTO> boardlist() {
@@ -53,6 +54,11 @@ public class BoardsDAO {
 	public int viewCount(int seq) {
 		String sql = "update board set view_count = view_count + 1 where seq = ?";
 		return jdbc.update(sql, seq);
+	}
+	public int getSeq () {
+		String sql = "select board_seq.nextval from dual";
+		
+		return jdbc.queryForObject(sql, Integer.class);
 	}
 }
 

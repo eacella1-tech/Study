@@ -1,7 +1,8 @@
 package com.kedu.controllers;
 
-import java.util.ArrayList;
+import java.io.File;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
 
@@ -10,10 +11,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.kedu.dao.BoardsDAO;
+import com.kedu.dao.FilesDAO;
 import com.kedu.dao.ReplyDAO;
 import com.kedu.dto.BoardsDTO;
+import com.kedu.dto.FilesDTO;
 import com.kedu.dto.ReplyDTO;
 
 @Controller
@@ -24,7 +28,9 @@ public class BoardController {
 	private BoardsDAO dao;
 	@Autowired
 	private ReplyDAO replydao;
-
+	@Autowired
+	private FilesDAO filesdao;
+	
 	@RequestMapping("/board")
 	public String boardlist(int cpage, Model model) throws Exception {
 		List<BoardsDTO> list = dao.selectFromTo(cpage * 10 - 9 , cpage * 10);
@@ -45,9 +51,27 @@ public class BoardController {
 	}
 
 	@RequestMapping("/complete")
-	public String insert(BoardsDTO dto) throws Exception {
+	public String insert(BoardsDTO dto,MultipartFile[] files,HttpSession session) throws Exception {
+		String id = (String) session.getAttribute("loginId");
+		if(id != null) {
+			dto.setWriter(id);
+		}
+		int seq = dao.getSeq();
+		dto.setSeq(seq);
+		
+		String path = "D:/uploads/";
 		dao.insert(dto);
 
+		for(MultipartFile file : files) {
+			if(file.isEmpty()) {
+				continue;
+			}
+			String oriName = file.getOriginalFilename(); 
+			String sysName = UUID.randomUUID() + "_" + oriName;
+
+			file.transferTo(new File(path + sysName));
+			filesdao.insert(new FilesDTO(0, oriName, sysName, null, seq));
+		}
 		return "redirect:/boards/board?cpage=1";
 
 	}
@@ -84,19 +108,21 @@ public class BoardController {
 	@RequestMapping("/detail")
 	public String detail(int seq, HttpSession session, Model model) throws Exception {
 
-	    dao.viewCount(seq);
+		dao.viewCount(seq);
 
-	    BoardsDTO dto = dao.detail(seq);
+		BoardsDTO dto = dao.detail(seq);
 
-	    List<ReplyDTO> replyList = replydao.selectByParentSeq(seq);
+		List<ReplyDTO> replyList = replydao.selectByParentSeq(seq);
+		List<FilesDTO> filesList = filesdao.selectByParentSeq(seq);
 
-	    model.addAttribute("dto", dto);
-	    model.addAttribute("loginId", session.getAttribute("loginId"));
-	    model.addAttribute("replyList", replyList);
+		model.addAttribute("dto", dto);
+		model.addAttribute("loginId", session.getAttribute("loginId"));
+		model.addAttribute("replyList", replyList);
+		model.addAttribute("filesList", filesList);
 
-	    return "boards/detail";
+		return "boards/detail";
 	}
-	
+
 	@ExceptionHandler(Exception.class)
 	public String errorHandler(Exception e) {
 		e.printStackTrace();

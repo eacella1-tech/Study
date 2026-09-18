@@ -40,7 +40,11 @@
 			<artifactId>aspectjrt</artifactId>
 			<version>${org.aspectj-version}</version>
 		</dependency>
-		<!-- Database Related -->
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+			<version>1.6.0</version>
+		</dependency>
 		<!-- Database Related -->
 		<dependency>
 			<groupId>com.oracle.database.jdbc</groupId>

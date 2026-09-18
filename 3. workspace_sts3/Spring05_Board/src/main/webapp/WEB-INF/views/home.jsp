@@ -165,8 +165,8 @@ h2 {
 
 </style>
 </head>
-
 <body>
+<img src="/uploads/img.png">
 	<c:choose>
 		<c:when test="${loginId != null}">
 			<div class="container">
@@ -198,6 +198,7 @@ h2 {
 		</c:when>
 		<c:otherwise>
 			<div class="container">
+			
 				<h2>로그인</h2>
 				<form action="/members/login" method="post">
 					<div class="box">
