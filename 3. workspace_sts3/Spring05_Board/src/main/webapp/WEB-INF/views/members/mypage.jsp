@@ -180,22 +180,22 @@ legend {
 	
 	            <div class="item">
 	                <label>아이디</label>
-	                <input type="text" value="${dto.id}" readonly>
+	                <input type="text" id="id" readonly>
 	            </div>
 	
 	            <div class="item">
 	                <label>이름</label>
-	                <input type="text" name="name" value="${dto.name}" readonly readonly class="editable">
+	                <input type="text" name="name" id="name" readonly readonly class="editable">
 	            </div>
 	
 	            <div class="item">
 	                <label>연락처</label>
-	                <input type="text" name="phone" value="${dto.phone}" readonly readonly class="editable">
+	                <input type="text" name="phone" id="phone" readonly readonly class="editable">
 	            </div>
 	
 	            <div class="item">
 	                <label>이메일</label>
-	                <input type="text" name="email" value="${dto.email}" readonly readonly class="editable">
+	                <input type="text" name="email" id="email" readonly readonly class="editable">
 	            </div>
 	
 	            <div class="item">
@@ -217,19 +217,19 @@ legend {
 				<div class="item">
 					<label>우편 번호</label>
 					<div class="zipcode-wrap">
-						<input type="text" name="zipcode" value="${dto.zipcode}" readonly>
+						<input type="text" name="zipcode" id="zipcode" readonly>
 						<button type="button" id="addressSearch" style="display: none;">우편번호 찾기</button>
 					</div>
 				</div>
 
 				<div class="item">
 	                <label>기본주소</label>
-	                <input type="text" name="address1" value="${dto.address1}" readonly readonly>
+	                <input type="text" name="address1" id="address1" readonly>
 	            </div>
 	
 	            <div class="item">
 	                <label>상세주소</label>
-	                <input type="text" name="address2" value="${dto.address2}" readonly readonly class="editable"> 
+	                <input type="text" name="address2" id="address2" readonly class="editable"> 
 	            </div>
 	
 	        </fieldset>
@@ -244,6 +244,27 @@ legend {
 	</form>
     </div>	
     <script>
+    $(document).ready(function() {
+
+        $.ajax({
+            url: "/members/mypageData",
+            dataType: "json"
+        }).done(function(resp) {
+
+            $("#id").val(resp.id);
+            $("#name").val(resp.name);
+            $("#phone").val(resp.phone);
+            $("#email").val(resp.email);
+
+            $("#zipcode").val(resp.zipcode);
+            $("#address1").val(resp.address1);
+            $("#address2").val(resp.address2);
+
+        }).fail(function() {
+            alert("회원정보를 불러오는 중 오류가 발생했습니다.");
+        });
+
+    });
     let originalValues = {};
     
     

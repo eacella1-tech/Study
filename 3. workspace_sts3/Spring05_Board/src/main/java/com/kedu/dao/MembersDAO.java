@@ -33,10 +33,11 @@ public class MembersDAO {
 		return jdbc.update(sql, dto.getName(), dto.getPhone(), dto.getEmail(), dto.getZipcode(), dto.getAddress1(), dto.getAddress2(),dto.getId());
 	}
 
-	public boolean IdCheck(String id) {
-		String sql = "select count(*) from members where id = ?";
-		return jdbc.queryForObject(sql, Integer.class, id) > 0;
+	public boolean IdCheck(String id) throws Exception {
 
+	    String sql = "select count(*) from members where id = ?";
+	    int result = jdbc.queryForObject(sql, Integer.class, id);
+	    return result == 0;
 	}
 
 	public boolean login(String id, String pw) {

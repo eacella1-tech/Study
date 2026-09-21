@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>회원가입</title>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script
 	src="//t1.kakaocdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <style>
@@ -160,6 +161,12 @@ input::placeholder {
 .btn button:last-child:hover {
 	background-color: #ddd;
 }
+#idResult {
+	display: block;
+	margin-top: -8px;
+	margin-bottom: 15px;
+	font-size: 12px;
+}
 </style>
 </head>
 <body>
@@ -174,6 +181,7 @@ input::placeholder {
 						<input type="text" id="id" name="id" placeholder="아이디 입력(최대 30자)">
 						<button type="button" id="checkId">중복검사</button>
 					</div>
+					<span id="idResult"></span> 
 					<label for="password">비밀번호</label><br> 
 					<input type="password" id="password" name="pw" placeholder="비밀번호 입력"><br> 
 					<label for="password1">비밀번호 확인</label><br> 
@@ -242,18 +250,40 @@ input::placeholder {
 		let phoneRegex = /^010-?\d{4}-?\d{4}$/;
 		let emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
-		document.getElementById("checkId").onclick = function() {
+		$("#checkId").on("click", function() {
 
-			let idValue = id.value;
+		    let idValue = id.value;
 
-			if (!idRegex.test(idValue)) {
-				alert("아이디가 형식에 맞지 않습니다.");
-				id.focus();
-				return;
-			}
+		    if (!idRegex.test(idValue)) {
+		        alert("아이디가 형식에 맞지 않습니다.");
+		        id.focus();
+		        return;
+		    }
 
-			window.open("/members/idcheck?id=" + idValue, "", "width=400,height=300");
-		};
+		    $.ajax({
+		        url: "/members/idcheck",
+		        data: {id: idValue},
+		        dataType: "json"
+		    }).done(function(resp) {
+
+		        if (resp) {
+		            $("#idResult").html("사용 가능한 아이디입니다.");
+		            id.setAttribute("check", "true");
+		        } else {
+		            $("#idResult").html("이미 사용 중인 아이디입니다.");
+		            id.setAttribute("check", "false");
+		        }
+
+		    }).fail(function() {
+		        alert("중복검사 중 오류가 발생했습니다.");
+		    });
+		});
+
+		$("#id").on("input", function() {
+		    id.setAttribute("check", "false");
+		    $("#idResult").html("");
+		});
+//			window.open("/members/idcheck?id=" + idValue, "", "width=400,height=300");
 
 		form.onsubmit = function(e) {
 
@@ -334,12 +364,12 @@ input::placeholder {
 				return;
 			}
 			
-			if(id.getAttribute("check") == "false"){
-	            alert("ID 중복검사를 다시 확인해주세요");
-	            id.focus();
-	            return false;
-	         }
-			return true;
+			if (id.getAttribute("check") != "true") {
+			    e.preventDefault();
+			    alert("아이디 중복검사를 해주세요.");
+			    id.focus();
+			    return;
+			}
 		}
 
 		document.getElementById("search").onclick = function() {

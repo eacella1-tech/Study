@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kedu.commons.EncryptionUtils;
 import com.kedu.dao.MembersDAO;
@@ -17,7 +18,7 @@ import com.kedu.dto.MembersDTO;
 public class MemberController {
 	@Autowired
 	private MembersDAO dao;
-
+	
 	@RequestMapping("/signup")
 	public String signup() {
 		return "members/signup";
@@ -75,13 +76,18 @@ public class MemberController {
 	    model.addAttribute("dto", dto);
 	    return "members/mypage";
 	}
-
+	
+	@ResponseBody
+	@RequestMapping("/mypageData")
+	public MembersDTO mypageData(HttpSession session) throws Exception {
+	    String id = (String) session.getAttribute("loginId");
+	    return dao.selectOne(id);
+	}
+	
+	@ResponseBody
 	@RequestMapping("/idcheck")
-	public String idcheck(String id, Model model) throws Exception {
-		boolean result = dao.IdCheck(id);
-		model.addAttribute("id", id);
-		model.addAttribute("result", result);
-		return "members/idcheck_view";
+	public boolean idcheck(String id) throws Exception {
+	    return dao.IdCheck(id);
 	}
 
 	@ExceptionHandler(Exception.class)

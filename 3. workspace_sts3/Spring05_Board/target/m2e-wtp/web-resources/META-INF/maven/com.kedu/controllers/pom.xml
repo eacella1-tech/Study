@@ -5,7 +5,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.kedu</groupId>
 	<artifactId>controllers</artifactId>
-	<name>Spring05_Board</name>
+	<name>Spring07_Ajax</name>
 	<packaging>war</packaging>
 	<version>1.0.0-BUILD-SNAPSHOT</version>
 	<properties>
@@ -45,6 +45,11 @@
 			<artifactId>commons-fileupload</artifactId>
 			<version>1.6.0</version>
 		</dependency>
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>2.14.0</version>
+		</dependency>
 		<!-- Database Related -->
 		<dependency>
 			<groupId>com.oracle.database.jdbc</groupId>
@@ -63,7 +68,6 @@
 			<artifactId>spring-jdbc</artifactId>
 			<version>${org.springframework-version}</version>
 		</dependency>
-
 		<!-- Logging -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
