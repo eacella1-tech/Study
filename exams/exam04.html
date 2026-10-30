@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // const numbers = [1, 2, 3, 4, 5, 6];
+        // // filter 함수 : 모든 요소를 순환하며 조건을 만족하는 요소만 반환
+
+        // let result = numbers.filter((e) => {
+        //     return e % 2 == 0;
+
+
+        //     // return true; -> true가 되는 경우에 해당하는 요소가 반환 됨.
+
+
+        // });
+        // console.log(result);
+        
+        // 20보다 큰 숫자
+        const numbers = [10, 15, 20, 25, 30];
+        let result = numbers.filter(e => e > 20);
+        console.log(result);
+
+        // 5글자를 초과하는 과일
+        const words = ["Apple", "Banana", "Kiwi", "orange", "Strawberry"];
+        let result1 = words.filter(e => e.length > 5);
+        console.log(result1);
+
+        const people = [
+            { name: 'Alice', age: 25, city: 'New York' },
+            { name: 'Bob', age: 30, city: 'San Francisco' },
+            { name: 'Charlie', age: 35, city: 'New York' },
+            { name: 'Dave', age: 40, city: 'San Francisco' }
+        ];
+        // 뉴욕에 사는 30세 이상인 사람
+        let result2 = people.filter(e => e.city == 'New York' && e.age >= 30);
+        console.log(result2);
+        // Alice만 삭제
+        let result3 = people.filter(e => e.name != 'Alice');
+        console.log(result3);
+
+
+    </script>
+</body>
+
+</html>
